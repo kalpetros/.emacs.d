@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: react-should-component-update
+# key: rscu
+# group: rjsx-mode
+# --
+
+shouldComponentUpdate() {
+  $1		    
+}

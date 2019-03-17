@@ -1,0 +1,21 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: react-component
+# key: rco
+# group: rjsx-mode
+# --
+
+import React from 'react';
+
+class ${1:Class} extends React.Component {
+  constructor(props) {
+    super(props)
+    $2
+  }
+  render() {
+    return(
+      $3
+    );
+  }
+}
+
+export{$1}
