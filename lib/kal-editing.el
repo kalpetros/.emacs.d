@@ -1,5 +1,14 @@
 ;;; kal-editing.el --- General editing configuration
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package provides various
+;; editing configurations
+
+;;; Code:
+
 ;; Auto add/close bracket/brace
 (electric-pair-mode 1)
 
@@ -13,3 +22,5 @@
 (yas-global-mode 1)
 
 (provide 'kal-editing)
+
+;;; kal-editing.el ends here

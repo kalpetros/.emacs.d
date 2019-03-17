@@ -1,5 +1,14 @@
 ;;; kal-navigation.el --- General navigation settings
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package provides various
+;; navigation configurations
+
+;;; Code:
+
 (require 'helm)
 ;; Start with emacs
 (helm-mode 1)
@@ -40,3 +49,5 @@
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
 (provide 'kal-navigation)
+
+;;; kal-navigation.el ends here

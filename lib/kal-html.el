@@ -1,5 +1,14 @@
 ;;; kal-html.el --- HTML support
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package provides various
+;; HTML configurations
+
+;;; Code:
+
 ;; Emmet
 (global-set-key (kbd "C-x j") 'emmet-expand-line)
 
@@ -19,3 +28,5 @@
 ;; (add-to-list 'auto-mode-alist '("\\.js[x]?\\" . web-mode))
 
 (provide 'kal-html)
+
+;;; kal-html.el ends here

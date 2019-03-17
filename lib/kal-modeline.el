@@ -1,5 +1,14 @@
 ;;; kal-modeline.el --- Modeline configuration
 
+;; Package-Requires: ((all-the-icons))
+
+;;; Commentary:
+
+;; This package customizes the look
+;; of the modeline
+
+;;; Code:
+
 (require 'all-the-icons)
 
 (setq battery-mode-line-format "%b %p")
@@ -16,8 +25,8 @@
 (setq battery-percentage (concat " " battery-icon battery-mode-line-string "%% "))
 
 ;; Read-only, Edited
-(setq ro-icon (concat " " (all-the-icons-material "lock") " "))
-(setq edited-icon (concat " " (all-the-icons-material "edit") " "))
+(defvar ro-icon (concat " " (all-the-icons-material "lock") " "))
+(defvar edited-icon (concat " " (all-the-icons-material "edit") " "))
 
 ;; Flycheck errors
 (setq flck-errors (all-the-icons-octicon "bug"))
@@ -26,16 +35,16 @@
 (defun get-file-name (file)
   "Return a FILE name with its format icon."
   (setq file-icon (all-the-icons-icon-for-buffer))
-  (setq output (concat " " file-icon " " file)))
+  (concat " " file-icon " " file))
 
 (defun get-vc-branch (vc branch)
   "Return a formatted VC BRANCH name with a branch icon."
   (setq vc-icon (all-the-icons-octicon "git-branch"))
   (setq branch (replace-regexp-in-string vc "" branch))
-  (setq output (concat " " vc-icon branch " ")))
+  (concat " " vc-icon branch " "))
 
 (defun flycheck-status (state)
-  "Return flycheck information for the given STATE"
+  "Return flycheck information for the given STATE."
   (setq icon (cond ((string= "error" state) "error")
   		   ((string= "warning" state) "report_problem")
   		   ((string= "info" state) "info")))
@@ -182,3 +191,5 @@
 		    :box '(:line-width 8 :color "#fb8c00"))
 
 (provide 'kal-modeline)
+
+;;; kal-modeline.el ends here

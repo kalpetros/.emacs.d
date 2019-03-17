@@ -1,5 +1,14 @@
 ;;; kal-appearance.el --- Interface configuration & theming
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package configures various
+;; interface and theming aspects
+
+;;; Code:
+
 (scroll-bar-mode -1)
 (window-divider-mode -1)
 (tool-bar-mode -1)
@@ -24,3 +33,5 @@
 ;; (set-frame-font "Monaco 11" nil t)
 
 (provide 'kal-appearance)
+
+;;; kal-appearance.el ends here

@@ -1,5 +1,14 @@
 ;;; kal-linting.el --- Linting support
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package provides various
+;; linting configurations
+
+;;; Code:
+
 ;; Flycheck
 (require 'flycheck)
 (global-flycheck-mode)
@@ -10,3 +19,5 @@
 ;; (setq flycheck-python-flake8-executable 'flake8)
 
 (provide 'kal-linting)
+
+;;; kal-linting.el ends here

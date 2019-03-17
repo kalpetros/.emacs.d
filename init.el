@@ -1,9 +1,17 @@
 ;;; initt.el --- Emacs setup
 
-(require 'package)
+;;; Commentary:
+
+;; init.el initializes all needed packages
+
+;;; Code:
+
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/lib")
+(add-to-list 'load-path "~/.emacs.d/lib/")
+
+;; Custom file
+(setq custom-file "~/.emacs.d/custom.el")
 
 ;; List of packages
 (defvar kal-packages
@@ -20,7 +28,12 @@
     git-gutter+         ; Needs Git
     git-gutter-fringe+  ; Needs git-gutter+
     jedi
-    wakatime-mode))     ; Needs wakatime
+    all-the-icons
+    yasnippet
+    yasnippet-snippets
+    yaml-mode
+    wakatime-mode)
+  "List of packages.")
 
 ;; Load sources
 (require 'kal-sources)
@@ -28,14 +41,15 @@
 ;; Load helpers
 (require 'kal-helpers)
 
-;; Check for package state
-;; install it if its missing
+;; Fetch available packages
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; Install missing packages
 (dolist (pkg kal-packages)
   (kal-package-install pkg))
 
-;; (when (not package-archive-contents)
-;;   (package-refresh-contents))
-;; Load libraries
+;; Load packages
 (require 'kal-appearance)
 (require 'kal-modeline)
 (require 'kal-navigation)
@@ -47,3 +61,5 @@
 (require 'kal-react)
 (require 'kal-yaml)
 (require 'kal-util)
+
+;;; init.el ends here

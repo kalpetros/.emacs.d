@@ -1,5 +1,15 @@
 ;;; kal-sources.el --- Define package sources
 
+;; Package-Requires:
+
+;;; Commentary:
+
+;; This package adds a list
+;; of external package sources
+;; to package-archives
+
+;;; Code:
+
 ;; List of sources
 (defvar ks-sources '(("melpa" . "://melpa.org/packages/")
 		     ("melpa-stable" . "://stable.melpa.org/packages/")
@@ -25,3 +35,5 @@
   (add-to-list 'package-archives (cons (car source) (concat ks-protocol (cdr source)))))
 
 (provide 'kal-sources)
+
+;;; kal-sources.el ends here
