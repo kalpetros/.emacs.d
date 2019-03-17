@@ -10,9 +10,6 @@
 
 (add-to-list 'load-path "~/.emacs.d/lib/")
 
-;; Custom file
-(setq custom-file "~/.emacs.d/custom.el")
-
 ;; List of packages
 (defvar kal-packages
   '(night-owl-theme
@@ -61,5 +58,8 @@
 (require 'kal-react)
 (require 'kal-yaml)
 (require 'kal-util)
+
+;; Custom file
+(setq custom-file "~/.emacs.d/custom.el")
 
 ;;; init.el ends here
