@@ -34,4 +34,7 @@
 
 (provide 'kal-appearance)
 
+;; Neotree
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
 ;;; kal-appearance.el ends here

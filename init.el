@@ -6,29 +6,33 @@
 
 ;;; Code:
 
+(require 'package)
+
 (package-initialize)
 
 (add-to-list 'load-path "~/.emacs.d/lib/")
 
 ;; List of packages
 (defvar kal-packages
-  '(night-owl-theme
+  '(flycheck            ; Install the following too (eslint, pylint, sass-lint)
     helm
     helm-ag
+    company
+    company-jedi
     json-mode
     rjsx-mode
-    multiple-cursors
-    flycheck            ; Install the following too (eslint, pylint, sass-lint)
-    auto-complete
     emmet-mode
     web-mode
-    git-gutter+         ; Needs Git
-    git-gutter-fringe+  ; Needs git-gutter+
-    jedi
-    all-the-icons
+    yaml-mode
     yasnippet
     yasnippet-snippets
-    yaml-mode
+    multiple-cursors
+    magit
+    git-gutter+         ; Needs Git
+    git-gutter-fringe+  ; Needs git-gutter+
+    neotree
+    night-owl-theme
+    all-the-icons
     wakatime-mode)
   "List of packages.")
 
@@ -38,7 +42,7 @@
 ;; Load helpers
 (require 'kal-helpers)
 
-;; Fetch available packages
+;; Fsetch available packages
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -61,5 +65,8 @@
 
 ;; Custom file
 (setq custom-file "~/.emacs.d/custom.el")
+(condition-case err
+    (load custom-file)
+  (error (message "Error loading custom file")))
 
 ;;; init.el ends here

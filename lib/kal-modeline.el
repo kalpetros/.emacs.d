@@ -17,16 +17,22 @@
 (display-battery-mode t)
 
 ;; Battery
-(setq battery-icon (cond ((= 100 (string-to-number battery-mode-line-string)) (all-the-icons-faicon "battery-full"))
-			 ((< 50 (string-to-number battery-mode-line-string)) (all-the-icons-faicon "battery-three-quarters"))
-			 ((= 50 (string-to-number battery-mode-line-string)) (all-the-icons-faicon "battery-half"))
-			 ((and (> 50 (string-to-number battery-mode-line-string)) (< 10 (string-to-number battery-mode-line-string))) (all-the-icons-faicon "battery-quarter"))
-			 ((>= 10 (string-to-number battery-mode-line-string)) (all-the-icons-faicon "battery-empty"))))
+(setq battery-icon (cond ((= 100 (string-to-number battery-mode-line-string))
+			  (all-the-icons-faicon "battery-full"))
+			 ((< 50 (string-to-number battery-mode-line-string))
+			  (all-the-icons-faicon "battery-three-quarters"))
+			 ((= 50 (string-to-number battery-mode-line-string))
+			  (all-the-icons-faicon "battery-half"))
+			 ((and (> 50 (string-to-number battery-mode-line-string))
+			       (< 10 (string-to-number battery-mode-line-string)))
+			  (all-the-icons-faicon "battery-quarter"))
+			 ((>= 10 (string-to-number battery-mode-line-string))
+			  (all-the-icons-faicon "battery-empty"))))
 (setq battery-percentage (concat " " battery-icon battery-mode-line-string "%% "))
 
 ;; Read-only, Edited
-(defvar ro-icon (concat " " (all-the-icons-material "lock") " "))
-(defvar edited-icon (concat " " (all-the-icons-material "edit") " "))
+(defvar ro-icon (concat " " (all-the-icons-octicon "lock") " "))
+(defvar edited-icon (concat " " (all-the-icons-octicon "pencil") " "))
 
 ;; Flycheck errors
 (setq flck-errors (all-the-icons-octicon "bug"))
@@ -45,18 +51,22 @@
 
 (defun flycheck-status (state)
   "Return flycheck information for the given STATE."
-  (setq icon (cond ((string= "error" state) "error")
-  		   ((string= "warning" state) "report_problem")
+  (setq icon (cond ((string= "error" state) "issue-opened")
+  		   ((string= "warning" state) "alert")
   		   ((string= "info" state) "info")))
   (setq counts (flycheck-count-errors flycheck-current-errors))
   (setq haserror (flycheck-has-current-errors-p state))
   (setq error (or (cdr (assq state counts)) 0))
-  (setq output (concat " " (all-the-icons-material icon) " " (format "%s" error) " "))
+  (setq output (concat " " (all-the-icons-octicon icon) " " (format "%s" error) " "))
   (when haserror output))
 
 (setq-default
  mode-line-format
  '(
+   ;; Flycheck errors
+   (:propertize (:eval (flycheck-status 'error)) face mode-line-flycheck-error-face)
+   (:propertize (:eval (flycheck-status 'warning)) face mode-line-flycheck-warning-face)
+   (:propertize (:eval (flycheck-status 'info)) face mode-line-flycheck-info-face)
    ;; Battery percentage
    (:eval
     (cond ((>= 10 (string-to-number battery-mode-line-string)) (propertize battery-percentage 'face 'mode-line-battery-warning-face))
@@ -74,10 +84,6 @@
           ((buffer-modified-p)
            (propertize edited-icon 'face 'mode-line-modified-face))
           (t "")))
-   ;; Flycheck errors
-   (:propertize (:eval (flycheck-status 'error)) face mode-line-flycheck-error-face)
-   (:propertize (:eval (flycheck-status 'warning)) face mode-line-flycheck-warning-face)
-   (:propertize (:eval (flycheck-status 'info)) face mode-line-flycheck-info-face)
    ;; Document scroll percentage
    (:propertize " %p " face mode-line-percentage-face)
    ;; Line number
@@ -141,7 +147,7 @@
 		    :box '(:line-width 8 :color "#000000"))
 (set-face-attribute 'mode-line-vc-branch-face nil
 		    :inherit 'mode-line-face
-		    :foreground "#ffffff"
+		    :foreground "#ffcc80"
 		    :background "#000000"
 		    :box '(:line-width 8 :color "#000000"))
 (set-face-attribute 'mode-line-read-only-face nil

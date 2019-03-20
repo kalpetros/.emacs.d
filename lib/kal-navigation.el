@@ -18,6 +18,8 @@
 (setq helm-mode-fuzzy-match t)
 (setq helm-completion-in-region-fuzzy-match t)
 (setq helm-candidate-number-limit '100)
+;; List helm commands ready for narrowing and selecting
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 ;; Silver searching
 (global-set-key (kbd "C-c C-;") 'helm-do-ag-project-root)
@@ -47,6 +49,9 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; Neotree
+(global-set-key (kbd "C-x C-k C-b") 'neotree-toggle)
 
 (provide 'kal-navigation)
 

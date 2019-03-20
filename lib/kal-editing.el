@@ -12,9 +12,12 @@
 ;; Auto add/close bracket/brace
 (electric-pair-mode 1)
 
-;; Auto complete
-(ac-config-default)
-(global-auto-complete-mode 1)
+;; Company mode
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; YASnippet
 (add-to-list 'load-path "~/.emacs.d/snippets")
