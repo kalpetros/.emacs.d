@@ -24,6 +24,10 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;; org mode workflow states
+(setq org-todo-keywords
+  '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
 (provide 'kal-editing)
 
 ;;; kal-editing.el ends here

@@ -32,8 +32,7 @@
     git-gutter-fringe+  ; Needs git-gutter+
     neotree
     night-owl-theme
-    all-the-icons
-    wakatime-mode)
+    all-the-icons)
   "List of packages.")
 
 ;; Load sources

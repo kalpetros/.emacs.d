@@ -10,7 +10,7 @@
 
 
 ;; WakaTime
-(global-wakatime-mode)
+;; (global-wakatime-mode)
 
 (provide 'kal-util)
 
