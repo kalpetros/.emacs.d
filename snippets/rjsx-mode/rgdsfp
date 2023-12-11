@@ -1,9 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: react-get-derived-state-from-props
-# key: rgdsfp
-# group: rjsx-mode
-# --
-
-getDerivedStateFromProps() {
-  $1		    
-}

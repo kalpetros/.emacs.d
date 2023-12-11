@@ -1,4 +1,4 @@
-;;; initt.el --- Emacs setup
+;;; init.el --- Emacs
 
 ;;; Commentary:
 
@@ -6,66 +6,65 @@
 
 ;;; Code:
 
+;; ===================================
+;; Setup
+;; ===================================
+
 (require 'package)
 
 (package-initialize)
 
-(add-to-list 'load-path "~/.emacs.d/lib/")
+(defvar my-packages
+  '(company             ;;
+    diff-hl             ;;
+    doom-modeline       ;;
+    flycheck            ;;
+    helm                ;;
+    helm-ag             ;;
+    lsp-mode            ;; Need to pip install python-lsp-server first
+    lsp-ui              ;; UI integrations for lsp-mode
+    magit               ;;
+    multiple-cursors    ;;
+    timu-rouge-theme    ;;
+    )
+  )
 
-;; List of packages
-(defvar kal-packages
-  '(flycheck            ; Install the following too (eslint, pylint, sass-lint)
-    helm
-    helm-ag
-    company
-    company-jedi
-    json-mode
-    rjsx-mode
-    emmet-mode
-    web-mode
-    yaml-mode
-    yasnippet
-    yasnippet-snippets
-    multiple-cursors
-    magit
-    git-gutter+         ; Needs Git
-    git-gutter-fringe+  ; Needs git-gutter+
-    neotree
-    night-owl-theme
-    all-the-icons)
-  "List of packages.")
+;; ===================================
+;; Load packages
+;; ===================================
 
-;; Load sources
-(require 'kal-sources)
+(add-to-list 'load-path "~/.emacs.d/packages/")
 
-;; Load helpers
-(require 'kal-helpers)
+(require 'sources)
 
-;; Fsetch available packages
+;; If there are no archived package contents, refresh them
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; Install missing packages
-(dolist (pkg kal-packages)
-  (kal-package-install pkg))
+;; Check if packages are installed
+;; and if not install them
+(mapc #'(lambda (package)
+	  (unless (package-installed-p package)
+	    (package-install package)))
+      my-packages)
 
-;; Load packages
-(require 'kal-appearance)
-(require 'kal-modeline)
-(require 'kal-navigation)
-(require 'kal-vc)
-(require 'kal-linting)
-(require 'kal-editing)
-(require 'kal-python)
-(require 'kal-html)
-(require 'kal-react)
-(require 'kal-yaml)
-(require 'kal-util)
+(require 'ui)
+(require 'development)
+(require 'navigation)
 
-;; Custom file
-(setq custom-file "~/.emacs.d/custom.el")
-(condition-case err
-    (load custom-file)
-  (error (message "Error loading custom file")))
-
+(provide 'init)
 ;;; init.el ends here
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(timu-rouge-theme multiple-cursors magit lsp-ui lsp-mode helm-ag helm flycheck doom-modeline diff-hl company)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
